@@ -1,4 +1,4 @@
-"""Sembolik regresyon katmani (pyoperon, gplearn) icin ortak altyapi.
+"""Symbolic regression katmani (pyoperon, gplearn) icin ortak altyapi.
 
 Sinyal/arka plan tanimlari, olay agirliklari, SR kesimi, bolunme, anlamlilik
 (asimov, pick_cut, apply_cut), BDT (fit_bdt), permutasyon onemi ve Bell ve ark.
@@ -120,7 +120,7 @@ def extract_yukle():
 
 
 def sr_degiskenleri(d):
-    """Boyutsuz sembolik regresyon girdileri; mevcut sutunlar yeniden kullanilir."""
+    """Boyutsuz symbolic regression girdileri; mevcut sutunlar yeniden kullanilir."""
     return pd.DataFrame({
         'r': d.met_over_ptZ,                 # MET / pT(ll)
         'x': d.met / MZ,                     # MET / m_Z

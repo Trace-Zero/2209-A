@@ -217,7 +217,7 @@ def main():
     dog['durum'] = np.where(dog.aday.isna(), 'dogrulanamadi (nominal birakildi)', 'tamam')
     eksik = [f for f in og['oznitelikler'] if f in dog.index and pd.isna(dog.loc[f, 'aday'])]
 
-    md = [f"# Sembolik regresyon ozeti ({ortak.SINYAL}, oran {a.oran:g})", '',
+    md = [f"# Symbolic regression ozeti ({ortak.SINYAL}, oran {a.oran:g})", '',
           'Anlamlilik: defterdeki `asimov` (arka plan belirsizligi yok), '
           f'L = {ortak.LUMI / 1000:.2f} fb^-1. Esik dogrulama kumesinde, rapor test '
           'kumesinde; test verimleri tum veriye olceklidir (x 1/FRAC).', '',
@@ -247,7 +247,7 @@ def main():
         md += [f'**Uyari:** ogretmen ozniteliklerinden {eksik} dogrulanamadi; bu degiskenler '
                'kaydirmada nominal kaldi, ogretmenin sistematigi eksik tahmin edilebilir.', '']
     md += ['## 5. Grafikler', '',
-           '- `sr_girdileri.png`: sembolik regresyon girdileri, sinyal ve arka plan',
+           '- `sr_girdileri.png`: symbolic regression girdileri, sinyal ve arka plan',
            '- `ogretmen_asiri_ogrenme.png`: ogretmen egitim / OOF skorlari, KS testi',
            '- `ogretmen_degisken_onemi.png`: ogretmen permutasyon onemi',
            '- `sr_uzunluk_anlamlilik.png`: formul uzunlugu - anlamlilik',

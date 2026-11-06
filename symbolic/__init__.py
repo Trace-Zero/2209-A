@@ -1,4 +1,4 @@
-"""Mono-Z analizine sembolik regresyon katmani (Julia gerektirmez).
+"""Mono-Z analizine symbolic regression katmani (Julia gerektirmez).
 
     A) damitma: pyoperon SymbolicRegressor, hedef ogretmenin out-of-fold logiti
     B) dogrudan siniflandirma: gplearn SymbolicClassifier

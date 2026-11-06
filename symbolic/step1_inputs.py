@@ -1,4 +1,4 @@
-"""Adim 1: sembolik regresyon girdileri ve olay tablolari.
+"""Adim 1: symbolic regression girdileri ve olay tablolari.
 
 Defterle ayni yukleme (_extract.load), SR kesimi (signal_region), hucre yeniden
 orneklemesi (cell_resample, RESAMPLE) ve bolunme (split3, tohum 0) kullanilir.
@@ -63,7 +63,7 @@ def on_secim_etiketleri(on, sr, tohum):
 
 
 def main():
-    a, (ara, son) = ortak.argumanlar('Adim 1: sembolik regresyon girdileri')
+    a, (ara, son) = ortak.argumanlar('Adim 1: symbolic regression girdileri')
     ex = ortak.extract_yukle()
     on_bkg, on_sig = on_secim(ex, a.oran)
     ortak.surecleri_ayarla(on_bkg)

@@ -1,4 +1,4 @@
-"""Adim 3: sembolik regresyon (Julia gerektirmez).
+"""Adim 3: symbolic regression (Julia gerektirmez).
 
     A) Damitma -- pyoperon SymbolicRegressor; hedef ogretmenin OOF logiti,
        amaclar ['r2', 'length'] (NSGA-II, Pareto cephesi).
@@ -189,7 +189,7 @@ def main():
                        help='hizli deneme icin nesil sayisi (A ve B); verilmezse kutuphane varsayilani')
         p.add_argument('--nufus', type=int, default=None, help='nufus buyuklugu (A ve B)')
 
-    a, (ara, son) = ortak.argumanlar('Adim 3: sembolik regresyon', ekle)
+    a, (ara, son) = ortak.argumanlar('Adim 3: symbolic regression', ekle)
     olaylar = pd.read_pickle(ara / 'olaylar.pkl').join(pd.read_pickle(ara / 'ogretmen.pkl'))
     egit = olaylar[olaylar.kume == 'egitim']
     ek = {k: v for k, v in (('generations', a.nesil), ('population_size', a.nufus))

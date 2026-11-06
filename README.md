@@ -7,13 +7,13 @@ TÜBİTAK 2209-A Undergraduate Research Project
 | --- | --- |
 | `notebooks/monoz_dark_matter_analizi.ipynb` | Ana analiz: mono-$Z$ ($Z\to\ell\ell$ + MET), CMS Open Data `RunIIFall15MiniAODv2`; BDT / DNN / NSF karşılaştırması, Bell ve ark. (2012) kesim tabanlı referansı |
 | `notebooks/adim_adim_monoz.ipynb` | Aynı analizin adım adım, öğretici sürümü |
-| `symbolic/` | Sembolik regresyon katmanı (aşağıda) |
+| `symbolic/` | Symbolic regression katmanı (aşağıda; defterde Ek A) |
 | `Theotical Background/` | Haftalık teorik notlar |
 
 Defter, veriyi `/work/_extract.py` ile yükler ve sonuçları `/work/results/` klasörüne
 (`OUT`) yazar.
 
-## Sembolik regresyon katmanı (`symbolic/`)
+## Symbolic regression katmanı (`symbolic/`)
 
 Öğretmen modelin (defterdeki BDT) kararını kısa, okunabilir bir formüle indirger ve bu
 formülü mevcut kesim tabanlı seçimle ve öğretmenle karşılaştırır. Julia gerektirmez.
