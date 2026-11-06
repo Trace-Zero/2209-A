@@ -65,7 +65,8 @@ kütüphanelerin varsayılanlarıyla) tam veride çalıştırın.
 | 4 | Her formül: eşik doğrulamada, anlamlılık testte; seçim, taşınabilirlik, sistematik | `OUT/summary.md`, `sr_*.csv`, `sr_*.png` |
 
 `--oran` verildiğinde bütün çıktılar `OUT/symbolic_oran<oran>/` altına gider. `MONOZ_OUT`
-ve `MONOZ_EXTRACT` ortam değişkenleri `OUT` ve `_extract.py` yolunu değiştirir.
+ve `MONOZ_EXTRACT` ortam değişkenleri `OUT` ve `_extract.py` yolunu değiştirir. Modül defteri
+`notebooks/` altında ya da `symbolic/` klasörüyle yan yana arar; başka bir yer için `MONOZ_DEFTER`.
 
 ### Yöntem notları
 

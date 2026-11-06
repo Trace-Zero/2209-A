@@ -20,7 +20,11 @@ from sklearn.metrics import log_loss, roc_auc_score
 from sklearn.model_selection import train_test_split
 
 KOK = Path(__file__).resolve().parents[1]
-DEFTER = KOK / 'notebooks' / 'monoz_dark_matter_analizi.ipynb'
+# Defter, depoda notebooks/ altinda; Jupyter klasorunde symbolic/ ile yan yana olabilir
+_DEFTER_ADI = 'monoz_dark_matter_analizi.ipynb'
+_ADAYLAR = [Path(p) for p in (os.environ.get('MONOZ_DEFTER'),
+                              KOK / 'notebooks' / _DEFTER_ADI, KOK / _DEFTER_ADI) if p]
+DEFTER = next((p for p in _ADAYLAR if p.exists()), _ADAYLAR[-1])
 
 # Defterden alinan tanimlar (degistirilmeden calistirilir)
 _ISIMLER = ('LUMI', 'MZ', 'OUT', 'signal_region', 'SINYAL', 'RESAMPLE', 'FRAC',
