@@ -63,12 +63,18 @@ def yorumla(e, olaylar):
     """Formuldeki her degisken: fiziksel anlam ve sinyal/arka plan medyaninda turev isareti."""
     satir = []
     medyan = {y: olaylar[olaylar.y == y][ortak.SR_DEGISKENLERI].median() for y in (0, 1)}
+    # gercel semboller: Abs'in turevi sign() olur ve sayiya cevrilebilir
+    gercel = {s: sympy.Symbol(str(s), real=True) for s in e.free_symbols}
+    e = e.subs(gercel)
     for v in sorted(e.free_symbols, key=str):
         turev = sympy.diff(e, v)
         isaret = {}
         for y, ad in ((1, 'sinyal'), (0, 'arka plan')):
-            deger = complex(turev.subs({sympy.Symbol(k): medyan[y][k]
-                                        for k in ortak.SR_DEGISKENLERI}).evalf())
+            try:
+                deger = complex(turev.subs({g: medyan[y][str(g)]
+                                            for g in e.free_symbols}).evalf())
+            except TypeError:
+                deger = complex(np.nan)
             if not np.isfinite(deger) or deger.imag:
                 isaret[ad] = 'tanimsiz'
             else:
