@@ -8,7 +8,7 @@ TÜBİTAK 2209-A Undergraduate Research Project
 | `notebooks/monoz_dark_matter_analizi.ipynb` | Ana analiz: mono-$Z$ ($Z\to\ell\ell$ + MET), CMS Open Data `RunIIFall15MiniAODv2`; BDT / DNN / NSF karşılaştırması, Bell ve ark. (2012) kesim tabanlı referansı |
 | `notebooks/adim_adim_monoz.ipynb` | Aynı analizin adım adım, öğretici sürümü |
 | `symbolic/` | Symbolic regression katmanı (aşağıda; defterde Ek A) |
-| `Theotical Background/` | Haftalık teorik notlar |
+| `Theotical Background/` | Haftalık sunumlar |
 
 Defter, veriyi `/work/_extract.py` ile yükler ve sonuçları `/work/results/` klasörüne
 (`OUT`) yazar.

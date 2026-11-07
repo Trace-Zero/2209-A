@@ -212,6 +212,13 @@ def main():
                 'S': og_nokta['S'], 'B': og_nokta['B'], 'N_eff': og_nokta['Neff'],
                 'eps_S': og_nokta['epsS']})
     ana = pd.DataFrame(ana).set_index('secim')
+    ana.to_csv(son / 'sr_karsilastirma.csv')
+    # sunum icin secilen formuller (LaTeX)
+    with open(son / 'sr_formuller.tex', 'w', encoding='utf-8') as f:
+        for mod in secilen:
+            r = secilen[mod]
+            f.write(f"\\textbf{{Formula {mod}}} (length {r.uzunluk}, threshold {r.esik:.3g}):\\par\n"
+                    f"\\begin{{adjustbox}}{{max width=\\linewidth}}$f_{mod} = {r.latex}$\\end{{adjustbox}}\\par\\medskip\n")
 
     dog = pd.DataFrame(girdi['turetilmis_dogrulama']).T
     dog['durum'] = np.where(dog.aday.isna(), 'dogrulanamadi (nominal birakildi)', 'tamam')
