@@ -71,6 +71,8 @@ ve `MONOZ_EXTRACT` ortam değişkenleri `OUT` ve `_extract.py` yolunu değiştir
 ### Yöntem notları
 
 - **Bölünme:** defterle aynı (`split3`, tohum 0): eğitim %60, doğrulama %20, test %20.
+  Arka plan ağırlıkları, defterdeki `split3_bkg` gibi, bölünmeden **sonra** her kümede ayrı
+  yeniden örneklenir (kümeler arası ağırlık sızıntısı olmaz).
   Öğretmenin OOF skorları test dışındaki olaylarda 5 katla üretilir; test olaylarının skoru
   5 kat modelinin ortalamasıdır, dolayısıyla formül araması test etiketlerini hiç görmez.
 - **Alt örnek:** katmanlıdır (sinyal yarı, arka planda her süreçten eşit sayıda olay; küçük

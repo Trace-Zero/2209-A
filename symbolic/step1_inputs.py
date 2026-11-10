@@ -43,12 +43,21 @@ def kume_etiketi(df, tohum=0):
 
 
 def sr_olaylari(on_bkg, on_sig, ex):
-    """Defterin §1c'si: SR, birlestirme, hucre yeniden orneklemesi."""
+    """Defterin §1c'si: SR, birlestirme, hucre yeniden orneklemesi kume_ici_ornekle'de."""
     bkg = pd.concat([ortak.signal_region(d).assign(src=k) for k, d in on_bkg.items()],
                     ignore_index=True)
-    bkg['weight'] = ex['cell_resample'](bkg, ortak.RESAMPLE)
     sig = ortak.signal_region(on_sig).assign(src='sinyal')
     return bkg.assign(y=0), sig.assign(y=1)
+
+
+def kume_ici_ornekle(bkg, ex):
+    """Defterin split3_bkg'si: her kume (egitim/dogrulama/test) kendi icinde,
+    ham agirliktan baslayarak yeniden orneklenir; kumeler arasi sizinti olmaz."""
+    w = bkg.weight.to_numpy().copy()
+    for k in KUMELER:
+        m = (bkg.kume == k).to_numpy()
+        w[m] = ex['cell_resample'](bkg[m], ortak.RESAMPLE)
+    return w
 
 
 def on_secim_etiketleri(on, sr, tohum):
@@ -71,6 +80,7 @@ def main():
     # --- nominal: ana sinyal noktasi -------------------------------------
     bkg, sig = sr_olaylari(on_bkg, on_sig[ortak.SINYAL], ex)
     bkg['kume'], sig['kume'] = kume_etiketi(bkg), kume_etiketi(sig)
+    bkg['weight'] = kume_ici_ornekle(bkg, ex)
     olaylar = pd.concat([bkg, sig], ignore_index=True)
     olaylar = olaylar.join(ortak.sr_degiskenleri(olaylar))
     olaylar.to_pickle(ara / 'olaylar.pkl')
@@ -105,7 +115,8 @@ def main():
     for ad, (km, kj) in SISTEMATIK.items():
         kb = {k: ortak.kaydir(d, km, kj, dogrulama) for k, d in on_bkg_e.items()}
         ks = ortak.kaydir(on_sig_e, km, kj, dogrulama)
-        b, s = sr_olaylari(kb, ks, ex)          # yeniden ornekleme kaydirilmis SR'de
+        b, s = sr_olaylari(kb, ks, ex)
+        b['weight'] = kume_ici_ornekle(b, ex)   # kaydirilmis SR'de, kume icinde
         t = pd.concat([b, s], ignore_index=True).query("kume == 'test'")
         t = t.join(ortak.sr_degiskenleri(t))
         t.to_pickle(ara / f'sist_{ortak.kisa_ad(ad)}.pkl')
